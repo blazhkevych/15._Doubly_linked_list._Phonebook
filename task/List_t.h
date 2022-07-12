@@ -1,5 +1,7 @@
 ﻿#pragma once
-using namespace std;
+#include <iostream>
+using std::endl;
+using std::cout;
 
 template <typename T>
 struct Elem
@@ -59,10 +61,9 @@ public:
 	//Печать списка, начиная с хвоста
 	void PrintTail();
 
-	//перегрузка оператора =
+	// Перегрузка оператора =
 	List& operator = (const List&);
 
-	//##################################################################### Проверить нижележащие методы и перевести в шаблонные.
 	// Метод поиска заданного элемента по ключу. Ключ
 	// передаётся методу в качестве параметра. Метод
 	// возвращает позицию найденного элемента в случае
@@ -73,6 +74,15 @@ public:
 	// значение, передаваемое методу в качестве параметра.
 	void Replace(char value, int position) const;
 
+	// Метод удаления элементов списка, значение которых
+	// совпадает с заданным ключом.
+	void DelElementByKey(char key);
+
+	// Перегруженный оператор индексирования.
+	T& operator[](int position) const;
+
+	// Метод сортировки элементов списка.
+	void Sort();
 };
 
 template <typename T>
@@ -322,7 +332,7 @@ List<T>& List<T>::operator = (const List<T>& L)
 // возвращает позицию найденного элемента в случае
 // успеха или - 1 в противном случае.
 template<typename T>
-inline int List<T>::Find(char key) const
+int List<T>::Find(char key) const
 {
 	int position{ 0 };
 	// Запоминаем адрес головного элемента.
@@ -340,4 +350,98 @@ inline int List<T>::Find(char key) const
 	}
 
 	return -1;
+}
+
+// Метод замены значения указанного элемента на другое
+// значение, передаваемое методу в качестве параметра.
+template<typename T>
+void List<T>::Replace(char value, int position) const
+{
+	if (position < 0 || position >= m_count)
+		return;
+	else
+	{
+		int i{ 0 };
+		// Запоминаем адрес головного элемента.
+		Elem<T>* temp = m_head;
+		// Пока еще есть элементы.
+		while (temp != nullptr)
+		{
+			if (position == i)
+			{
+				temp->m_data = value;
+				break;
+			}
+			// Переходим на следующий элемент.
+			temp = temp->m_next;
+			i++;
+		}
+	}
+}
+
+// Метод удаления элементов списка, значение которых
+// совпадает с заданным ключом.
+template<typename T>
+void List<T>::DelElementByKey(char key)
+{
+	int i{ 0 };
+	// Запоминаем адрес головного элемента.
+	Elem<T>* current = m_head;
+	// Пока еще есть элементы.
+	Elem<T>* afterCurrent{ nullptr };
+	while (current != nullptr)
+	{
+		if (key == current->m_data)
+		{
+			afterCurrent = current->m_next; // сохраняем адрес следующего за елемента за текущим.
+			Del(i);
+			current = afterCurrent;
+			continue;
+		}
+		// Переходим на следующий элемент.
+		current = current->m_next;
+		i++;
+	}
+}
+
+// Перегруженный оператор индексирования.
+template<typename T>
+T& List<T>::operator[](int position) const
+{
+	if (position < 0 || position >= m_count)
+		return m_head->m_data;
+
+	int i{ 0 };
+	// Запоминаем адрес головного элемента.
+	Elem<T>* current = m_head;
+	// Пока еще есть элементы.
+	while (current != nullptr)
+	{
+		if (position == i)
+			return current->m_data;
+		// Переходим на следующий элемент.
+		current = current->m_next;
+		i++;
+	}
+}
+
+// Метод сортировки элементов списка.
+template<typename T>
+void List<T>::Sort()
+{
+	// Запоминаем адрес головного элемента.
+	List<T> temp = *this;
+	for (int i = 0; i < m_count; i++)
+	{
+		for (int j = m_count - 1; j > i; j--)
+		{
+			if (temp[j - 1] > temp[j])
+			{
+				T x = temp[j - 1];
+				temp[j - 1] = temp[j];
+				temp[j] = x;
+			}
+		}
+	}
+	*this = temp;
 }
