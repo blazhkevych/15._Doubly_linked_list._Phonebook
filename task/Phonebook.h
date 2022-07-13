@@ -7,7 +7,7 @@ struct Abonent
 	char m_surname[100]{ '\n' };
 	char m_address[100]{ '\n' };
 	char m_phone[100]{ '\n' };
-	int m_age;
+	int m_age{};
 
 	// Перегрузка оператора ">" для "this > object".
 	bool operator > (const Abonent& abonent) const;
@@ -27,7 +27,7 @@ public:
 	void SubscriberDataModification();
 
 	// Поиск абонентов по телефонному номеру или фамилии.
-	void SearchSubscriberBySurname();
+	void SearchSubscriberBySurnameOrPhone();
 
 	// Распечатка абонентов в алфавитном порядке.
 	void PrintSubscribersInAscending();

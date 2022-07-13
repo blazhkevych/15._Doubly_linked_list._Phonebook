@@ -10,13 +10,10 @@
 	 Сохранение телефонного справочника в файл.
 	 Загрузка телефонного справочника из файла.
 ################################################################################################
-		СТАТУС : Не готово.
-
-		видео 02,17,00 начало
-
-
+		СТАТУС : Готово.
 ################################################################################################
 */
+#include <conio.h>
 #include <iostream>
 #include "Phonebook.h"
 #include <windows.h>
@@ -90,12 +87,11 @@ int main()
 	list2.PrintHead();
 
 	cout << "#############################################" << endl;
-	cout << "################Tests. End.################" << endl;
+	cout << "#################Tests. End.#################" << endl;
 	cout << "#############################################" << endl;
 	*/
 
 	Phonebook phonebook;
-	//phonebook.PrintPhonebookHeader();
 
 	while (true)
 	{
@@ -113,6 +109,9 @@ int main()
 				"\n1. Добавление абонентов в телефонный справочник."
 				<< endl;
 			phonebook.AddAbonent();
+			cout << "Абонент успешно добавлен в телефонный справочник !" << endl
+				<< "\nДля продолжения нажмите любую клавишу." << endl;
+			_getch();
 			break;
 		case 2:
 			system("cls");
@@ -120,6 +119,9 @@ int main()
 				"\n2. Удаление абонентов из телефонного справочника."
 				<< endl;
 			phonebook.DeleteAbonent();
+			cout << "Абонент успешно удален из телефонной книги !" << endl
+				<< "\nДля продолжения нажмите любую клавишу." << endl;
+			_getch();
 			break;
 		case 3:
 			system("cls");
@@ -127,13 +129,19 @@ int main()
 				"\n3. Модификация данных абонента."
 				<< endl;
 			phonebook.SubscriberDataModification();
+			cout << "Абонент успешно модифицирован !" << endl
+				<< "\nДля продолжения нажмите любую клавишу." << endl;
+			_getch();
 			break;
 		case 4:
 			system("cls");
 			cout << "\tГлавное меню."
 				"\n4. Поиск абонентов по телефонному номеру или фамилии."
 				<< endl;
-			phonebook.SearchSubscriberBySurname();
+			phonebook.SearchSubscriberBySurnameOrPhone();
+			cout << "Поиск в телефонном справочнике завершен !" << endl
+				<< "\nДля продолжения нажмите любую клавишу." << endl;
+			_getch();
 			break;
 		case 5:
 			system("cls");
@@ -142,6 +150,9 @@ int main()
 				<< endl;
 			phonebook.PrintPhonebookHeader();
 			phonebook.PrintSubscribersInAscending();
+			cout << "Вывод абонентов из телефонного справочника в алфавитном порядке завершен !" << endl
+				<< "\nДля продолжения нажмите любую клавишу." << endl;  // NOLINT
+			_getch();
 			break;
 		case 6:
 			system("cls");
@@ -149,6 +160,9 @@ int main()
 				"\n6. Сохранение телефонного справочника в файл."
 				<< endl;
 			phonebook.SavePhonebookIntoFile();
+			cout << "Сохранение телефонного справочника в файл завершено !" << endl
+				<< "\nДля продолжения нажмите любую клавишу." << endl;
+			_getch();
 			break;
 		case 7:
 			system("cls");
@@ -156,11 +170,12 @@ int main()
 				"\n7. Загрузка телефонного справочника из файла."
 				<< endl;
 			phonebook.LoadPhonebookFromFile();
+			cout << "Загрузка телефонного справочника из файла завершена !" << endl
+				<< "\nДля продолжения нажмите любую клавишу." << endl;
+			_getch();
 			break;
 		case 8: // Выход.
 			exit(0);
 		}
 	}
 }
-
-//TODO: загрузка/выгрузка дописаны, протестировать.

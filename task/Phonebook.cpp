@@ -1,6 +1,5 @@
 #include <iostream>
 #include <iomanip>
-#include <conio.h>
 #include <io.h>
 #include "Phonebook.h"
 
@@ -30,11 +29,6 @@ void Phonebook::AddAbonent()
 	cin >> abonent.m_age;
 
 	m_lst.AddTail(abonent);
-
-	cout << "Абонент успешно добавлен в телефонный справочник !" << endl
-		<< "\nДля продолжения нажмите любую клавишу." << endl;
-
-	_getch();
 }
 
 // Удаление абонентов из телефонного справочника по позиции.
@@ -48,10 +42,6 @@ void Phonebook::DeleteAbonent()
 	cin >> id;
 
 	m_lst.Del(id);
-
-	cout << "Абонент успешно удален из телефонной книги !" << endl
-		<< "\nДля продолжения нажмите любую клавишу." << endl;
-	_getch();
 }
 
 // Модификация данных абонента.
@@ -87,14 +77,10 @@ void Phonebook::SubscriberDataModification()
 	cin >> abonent.m_age;
 
 	m_lst.AddTail(abonent);
-
-	cout << "Абонент успешно модифицирован !" << endl
-		<< "\nДля продолжения нажмите любую клавишу." << endl;
-	_getch();
 }
 
 // Поиск абонентов по телефонному номеру или фамилии.
-void Phonebook::SearchSubscriberBySurname()
+void Phonebook::SearchSubscriberBySurnameOrPhone()
 {
 	char surname[100];
 	char phone[100];
@@ -119,23 +105,13 @@ void Phonebook::SearchSubscriberBySurname()
 				<< endl;
 		}
 	}
-	cout << "Поиск в телефонном справочнике завершен !" << endl
-		<< "\nДля продолжения нажмите любую клавишу." << endl;
-
-	_getch();
 }
 
 // Распечатка абонентов в алфавитном порядке.
 void Phonebook::PrintSubscribersInAscending()
 {
 	this->m_lst.Sort();
-
 	PrintPhonebook();
-
-	cout << "Вывод абонентов из телефонного справочника в алфавитном порядке завершен !" << endl
-		<< "\nДля продолжения нажмите любую клавишу." << endl;
-
-	_getch();
 }
 
 // Вывод главного меню.
@@ -157,12 +133,12 @@ void Phonebook::PrintMainMenu()
 void Phonebook::PrintPhonebookHeader()
 {
 	cout << endl
-		<< setw(5) << "Id"
-		<< setw(15) << "Фамилия"
-		<< setw(15) << "Имя"
-		<< setw(40) << "Адрес"
-		<< setw(15) << "Телефон"
-		<< setw(8) << "Возраст"
+		<< setw(5) << "ID"
+		<< setw(15) << "ФАМИЛИЯ"
+		<< setw(15) << "ИМЯ"
+		<< setw(40) << "АДРЕС"
+		<< setw(15) << "ТЕЛЕФОН"
+		<< setw(8) << "ВОЗРАСТ"
 		<< endl;
 }
 
@@ -180,10 +156,6 @@ void Phonebook::PrintPhonebook()
 			<< setw(8) << m_lst.GetElem(i)->m_data.m_age
 			<< endl;
 	}
-	cout << "Вывод абонентов из телефонного справочника завершен !" << endl
-		<< "\nДля продолжения нажмите любую клавишу." << endl;
-
-	_getch();
 }
 
 // Сохранение телефонного справочника в файл.
@@ -206,44 +178,6 @@ void Phonebook::SavePhonebookIntoFile()
 		fwrite(m_lst.GetElem(i), sizeof(Abonent), 1, f_wright);
 	}
 	fclose(f_wright);
-
-
-
-	/*
-
-
-
-
-
-	// Пишем размер поля "m_name"
-	int name_strlen = strlen(student.getName()) + 1;
-	fwrite(&name_strlen, sizeof(int), 1, f_wright);
-
-	// Пишем значение поля "m_name"
-	fwrite(student.getName(), name_strlen, 1, f_wright);
-
-	// Пишем размер поля "m_surname"
-	int surname_strlen = strlen(student.getSurname()) + 1;
-	fwrite(&surname_strlen, sizeof(int), 1, f_wright);
-
-	// Пишем значение поля "m_surname"
-	fwrite(student.getSurname(), surname_strlen, 1, f_wright);
-
-	// Пишем значение поля "m_age"
-	int age = student.getAge();
-	fwrite(&age, sizeof(int), 1, f_wright);
-
-	// Пишем значение поля "m_phone"
-	fwrite(student.getPhone(), 15, 1, f_wright);
-
-	// Пишем значение поля "m_average"
-	double average = student.getAverage();
-	fwrite(&average, sizeof(double), 1, f_wright);
-
-	fclose(f_wright);
-
-
-	*/
 }
 
 // Чтение телефонного справочника из файла.
@@ -258,67 +192,19 @@ void Phonebook::LoadPhonebookFromFile()
 		return;
 	}
 
-	if (m_lst.GetCount() > 0) // Если Phonebook ен пустой, чистим.
+	if (m_lst.GetCount() > 0) // Если Phonebook не пустой, чистим.
 		m_lst.DelAll();
 
-	int lenght = _filelength(_fileno(f_read));
+	const int lenght = _filelength(_fileno(f_read));
 	int numAbonentsInFile = lenght / sizeof(Abonent);
 
 	for (int i = 0; i < numAbonentsInFile; i++)
 	{
 		Abonent abonent;
-		//Book* book = new Book;
 		fread(&abonent, sizeof(Abonent), 1, f_read);
-		//b.PtrBook[b.Count++] = book;
 		m_lst.Insert(abonent, i);
 	}
 	fclose(f_read);
-
-	/*
-
-
-
-
-	// Читаем размер поля "m_name"
-	int name_strlen{ 0 };
-	fread(&name_strlen, sizeof(int), 1, f_read);
-
-	// Читаем значение поля "m_name"
-	char* nameBufferRead = new char[name_strlen];
-	fread(nameBufferRead, name_strlen, 1, f_read);
-	student.setName(nameBufferRead);
-
-	// Читаем размер поля "m_surname"
-	int surname_strlen{ 0 };
-	fread(&surname_strlen, sizeof(int), 1, f_read);
-
-	// Читаем значение поля "m_surname"
-	char* surnameBufferRead = new char[surname_strlen];
-	fread(surnameBufferRead, surname_strlen, 1, f_read);
-	student.setSurname(surnameBufferRead);
-
-	// Читаем значение поля "m_age"
-	int age{ 0 };
-	fread(&age, sizeof(int), 1, f_read);
-	student.setAge(age);
-
-	// Читаем значение поля "m_phone"
-	char phone[15]{ 0 };
-	fread(phone, 15, 1, f_read);
-	student.setPhone(phone);
-
-	// Читаем значение поля "m_average"
-	double average{ 0.0 };
-	fread(&average, sizeof(double), 1, f_read);
-	student.setAverage(average);
-
-	delete[]nameBufferRead;
-	delete[]surnameBufferRead;
-	fclose(f_read);
-
-
-
-	 */
 }
 
 // Перегрузка оператора ">" для "this > object".
