@@ -123,9 +123,7 @@ void Phonebook::PrintMainMenu()
 		"\n3. Модификация данных абонента."
 		"\n4. Поиск абонентов по телефонному номеру или фамилии."
 		"\n5. Распечатка абонентов в алфавитном порядке."
-		"\n6. Сохранение телефонного справочника в файл."
-		"\n7. Загрузка телефонного справочника из файла."
-		"\n8. Выход."
+		"\n6. Выход."
 		<< endl;
 }
 
@@ -191,9 +189,6 @@ void Phonebook::LoadPhonebookFromFile()
 		perror("Error opening");
 		return;
 	}
-
-	if (m_lst.GetCount() > 0) // Если Phonebook не пустой, чистим.
-		m_lst.DelAll();
 
 	const int lenght = _filelength(_fileno(f_read));
 	int numAbonentsInFile = lenght / sizeof(Abonent);

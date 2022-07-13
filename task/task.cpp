@@ -93,11 +93,12 @@ int main()
 
 	Phonebook phonebook;
 
+	phonebook.LoadPhonebookFromFile();
 	while (true)
 	{
 		system("cls");
 		phonebook.PrintMainMenu();
-		int choice{0};
+		int choice{ 0 };
 		cout << "\n   >>> ";
 		cin >> choice;
 		cin.get();
@@ -109,7 +110,7 @@ int main()
 				"\n1. Добавление абонентов в телефонный справочник."
 				<< endl;
 			phonebook.AddAbonent();
-			cout << "Абонент успешно добавлен в телефонный справочник !" << endl
+			cout << "\nАбонент успешно добавлен в телефонный справочник !" << endl
 				<< "\nДля продолжения нажмите любую клавишу." << endl;
 			_getch();
 			break;
@@ -119,7 +120,7 @@ int main()
 				"\n2. Удаление абонентов из телефонного справочника."
 				<< endl;
 			phonebook.DeleteAbonent();
-			cout << "Абонент успешно удален из телефонной книги !" << endl
+			cout << "\nАбонент успешно удален из телефонной книги !" << endl
 				<< "\nДля продолжения нажмите любую клавишу." << endl;
 			_getch();
 			break;
@@ -129,7 +130,7 @@ int main()
 				"\n3. Модификация данных абонента."
 				<< endl;
 			phonebook.SubscriberDataModification();
-			cout << "Абонент успешно модифицирован !" << endl
+			cout << "\nАбонент успешно модифицирован !" << endl
 				<< "\nДля продолжения нажмите любую клавишу." << endl;
 			_getch();
 			break;
@@ -139,42 +140,23 @@ int main()
 				"\n4. Поиск абонентов по телефонному номеру или фамилии."
 				<< endl;
 			phonebook.SearchSubscriberBySurnameOrPhone();
-			cout << "Поиск в телефонном справочнике завершен !" << endl
+			cout << "\nПоиск в телефонном справочнике завершен !" << endl
 				<< "\nДля продолжения нажмите любую клавишу." << endl;
 			_getch();
 			break;
 		case 5:
 			system("cls");
 			cout << "\tГлавное меню."
-				"\n5. Распечатка абонентов в алфавитном порядке." // доделать сортировку
+				"\n5. Распечатка абонентов в алфавитном порядке." 
 				<< endl;
 			phonebook.PrintPhonebookHeader();
 			phonebook.PrintSubscribersInAscending();
-			cout << "Вывод абонентов из телефонного справочника в алфавитном порядке завершен !" << endl
-				<< "\nДля продолжения нажмите любую клавишу." << endl; 
+			cout << "\nВывод абонентов из телефонного справочника в алфавитном порядке завершен !" << endl
+				<< "\nДля продолжения нажмите любую клавишу." << endl;
 			_getch();
 			break;
-		case 6:
-			system("cls");
-			cout << "\tГлавное меню."
-				"\n6. Сохранение телефонного справочника в файл."
-				<< endl;
+		case 6: // Выход.
 			phonebook.SavePhonebookIntoFile();
-			cout << "Сохранение телефонного справочника в файл завершено !" << endl
-				<< "\nДля продолжения нажмите любую клавишу." << endl;
-			_getch();
-			break;
-		case 7:
-			system("cls");
-			cout << "\tГлавное меню."
-				"\n7. Загрузка телефонного справочника из файла."
-				<< endl;
-			phonebook.LoadPhonebookFromFile();
-			cout << "Загрузка телефонного справочника из файла завершена !" << endl
-				<< "\nДля продолжения нажмите любую клавишу." << endl;
-			_getch();
-			break;
-		case 8: // Выход.
 			exit(0);
 		}
 	}
