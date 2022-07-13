@@ -97,7 +97,7 @@ int main()
 	{
 		system("cls");
 		phonebook.PrintMainMenu();
-		int choice{ 0 };
+		int choice{0};
 		cout << "\n   >>> ";
 		cin >> choice;
 		cin.get();
@@ -151,7 +151,7 @@ int main()
 			phonebook.PrintPhonebookHeader();
 			phonebook.PrintSubscribersInAscending();
 			cout << "Вывод абонентов из телефонного справочника в алфавитном порядке завершен !" << endl
-				<< "\nДля продолжения нажмите любую клавишу." << endl;  // NOLINT
+				<< "\nДля продолжения нажмите любую клавишу." << endl; 
 			_getch();
 			break;
 		case 6:

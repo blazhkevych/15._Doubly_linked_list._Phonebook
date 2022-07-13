@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <iomanip>
 #include <io.h>
 #include "Phonebook.h"
@@ -8,86 +8,86 @@ using std::cout;
 using std::endl;
 using std::cin;
 
-// Добавление абонентов в телефонный справочник.
+// Р”РѕР±Р°РІР»РµРЅРёРµ Р°Р±РѕРЅРµРЅС‚РѕРІ РІ С‚РµР»РµС„РѕРЅРЅС‹Р№ СЃРїСЂР°РІРѕС‡РЅРёРє.
 void Phonebook::AddAbonent()
 {
 	Abonent abonent{};
 
-	cout << "\nФамилия: ";
+	cout << "\nР¤Р°РјРёР»РёСЏ: ";
 	cin.getline(abonent.m_surname, 100);
 
-	cout << "\nИмя: ";
+	cout << "\nРРјСЏ: ";
 	cin.getline(abonent.m_name, 100);
 
-	cout << "\nАдрес: ";
+	cout << "\nРђРґСЂРµСЃ: ";
 	cin.getline(abonent.m_address, 100);
 
-	cout << "\nТелефон: ";
+	cout << "\nРўРµР»РµС„РѕРЅ: ";
 	cin.getline(abonent.m_phone, 100);
 
-	cout << "\nВозраст: ";
+	cout << "\nР’РѕР·СЂР°СЃС‚: ";
 	cin >> abonent.m_age;
 
 	m_lst.AddTail(abonent);
 }
 
-// Удаление абонентов из телефонного справочника по позиции.
+// РЈРґР°Р»РµРЅРёРµ Р°Р±РѕРЅРµРЅС‚РѕРІ РёР· С‚РµР»РµС„РѕРЅРЅРѕРіРѕ СЃРїСЂР°РІРѕС‡РЅРёРєР° РїРѕ РїРѕР·РёС†РёРё.
 void Phonebook::DeleteAbonent()
 {
 	PrintPhonebookHeader();
 	PrintPhonebook();
 
-	cout << "Введите Id для удаления абонента: ";
+	cout << "Р’РІРµРґРёС‚Рµ Id РґР»СЏ СѓРґР°Р»РµРЅРёСЏ Р°Р±РѕРЅРµРЅС‚Р°: ";
 	int id;
 	cin >> id;
 
 	m_lst.Del(id);
 }
 
-// Модификация данных абонента.
+// РњРѕРґРёС„РёРєР°С†РёСЏ РґР°РЅРЅС‹С… Р°Р±РѕРЅРµРЅС‚Р°.
 void Phonebook::SubscriberDataModification()
 {
 	PrintPhonebookHeader();
 	PrintPhonebook();
 
-	cout << "\nВведите Id для модификации данных абонента: ";
+	cout << "\nР’РІРµРґРёС‚Рµ Id РґР»СЏ РјРѕРґРёС„РёРєР°С†РёРё РґР°РЅРЅС‹С… Р°Р±РѕРЅРµРЅС‚Р°: ";
 	int id;
 	cin >> id;
-	cin.get(); // Убирает ентер из потока.
+	cin.get(); // РЈР±РёСЂР°РµС‚ РµРЅС‚РµСЂ РёР· РїРѕС‚РѕРєР°.
 
 	m_lst.Del(id);
 
-	cout << endl << "Введите новые данные выбранного абонента: ";
+	cout << endl << "Р’РІРµРґРёС‚Рµ РЅРѕРІС‹Рµ РґР°РЅРЅС‹Рµ РІС‹Р±СЂР°РЅРЅРѕРіРѕ Р°Р±РѕРЅРµРЅС‚Р°: ";
 
 	Abonent abonent{};
 
-	cout << "\nФамилия: ";
+	cout << "\nР¤Р°РјРёР»РёСЏ: ";
 	cin.getline(abonent.m_surname, 100);
 
-	cout << "\nИмя: ";
+	cout << "\nРРјСЏ: ";
 	cin.getline(abonent.m_name, 100);
 
-	cout << "\nАдрес: ";
+	cout << "\nРђРґСЂРµСЃ: ";
 	cin.getline(abonent.m_address, 100);
 
-	cout << "\nТелефон: ";
+	cout << "\nРўРµР»РµС„РѕРЅ: ";
 	cin.getline(abonent.m_phone, 100);
 
-	cout << "\nВозраст: ";
+	cout << "\nР’РѕР·СЂР°СЃС‚: ";
 	cin >> abonent.m_age;
 
 	m_lst.AddTail(abonent);
 }
 
-// Поиск абонентов по телефонному номеру или фамилии.
+// РџРѕРёСЃРє Р°Р±РѕРЅРµРЅС‚РѕРІ РїРѕ С‚РµР»РµС„РѕРЅРЅРѕРјСѓ РЅРѕРјРµСЂСѓ РёР»Рё С„Р°РјРёР»РёРё.
 void Phonebook::SearchSubscriberBySurnameOrPhone()
 {
 	char surname[100];
 	char phone[100];
-	cout << "Введите фамилию: ";
+	cout << "Р’РІРµРґРёС‚Рµ С„Р°РјРёР»РёСЋ: ";
 	cin.getline(surname, 100);
 
-	cout << "\nВведите телефон: ";
+	cout << "\nР’РІРµРґРёС‚Рµ С‚РµР»РµС„РѕРЅ: ";
 	cin.getline(phone, 100);
 
 	const int count = m_lst.GetCount();
@@ -107,42 +107,42 @@ void Phonebook::SearchSubscriberBySurnameOrPhone()
 	}
 }
 
-// Распечатка абонентов в алфавитном порядке.
+// Р Р°СЃРїРµС‡Р°С‚РєР° Р°Р±РѕРЅРµРЅС‚РѕРІ РІ Р°Р»С„Р°РІРёС‚РЅРѕРј РїРѕСЂСЏРґРєРµ.
 void Phonebook::PrintSubscribersInAscending()
 {
 	this->m_lst.Sort();
 	PrintPhonebook();
 }
 
-// Вывод главного меню.
+// Р’С‹РІРѕРґ РіР»Р°РІРЅРѕРіРѕ РјРµРЅСЋ.
 void Phonebook::PrintMainMenu()
 {
-	cout << "\tГлавное меню."
-		"\n1. Добавление абонентов в телефонный справочник."
-		"\n2. Удаление абонентов из телефонного справочника."
-		"\n3. Модификация данных абонента."
-		"\n4. Поиск абонентов по телефонному номеру или фамилии."
-		"\n5. Распечатка абонентов в алфавитном порядке."
-		"\n6. Сохранение телефонного справочника в файл."
-		"\n7. Загрузка телефонного справочника из файла."
-		"\n8. Выход."
+	cout << "\tР“Р»Р°РІРЅРѕРµ РјРµРЅСЋ."
+		"\n1. Р”РѕР±Р°РІР»РµРЅРёРµ Р°Р±РѕРЅРµРЅС‚РѕРІ РІ С‚РµР»РµС„РѕРЅРЅС‹Р№ СЃРїСЂР°РІРѕС‡РЅРёРє."
+		"\n2. РЈРґР°Р»РµРЅРёРµ Р°Р±РѕРЅРµРЅС‚РѕРІ РёР· С‚РµР»РµС„РѕРЅРЅРѕРіРѕ СЃРїСЂР°РІРѕС‡РЅРёРєР°."
+		"\n3. РњРѕРґРёС„РёРєР°С†РёСЏ РґР°РЅРЅС‹С… Р°Р±РѕРЅРµРЅС‚Р°."
+		"\n4. РџРѕРёСЃРє Р°Р±РѕРЅРµРЅС‚РѕРІ РїРѕ С‚РµР»РµС„РѕРЅРЅРѕРјСѓ РЅРѕРјРµСЂСѓ РёР»Рё С„Р°РјРёР»РёРё."
+		"\n5. Р Р°СЃРїРµС‡Р°С‚РєР° Р°Р±РѕРЅРµРЅС‚РѕРІ РІ Р°Р»С„Р°РІРёС‚РЅРѕРј РїРѕСЂСЏРґРєРµ."
+		"\n6. РЎРѕС…СЂР°РЅРµРЅРёРµ С‚РµР»РµС„РѕРЅРЅРѕРіРѕ СЃРїСЂР°РІРѕС‡РЅРёРєР° РІ С„Р°Р№Р»."
+		"\n7. Р—Р°РіСЂСѓР·РєР° С‚РµР»РµС„РѕРЅРЅРѕРіРѕ СЃРїСЂР°РІРѕС‡РЅРёРєР° РёР· С„Р°Р№Р»Р°."
+		"\n8. Р’С‹С…РѕРґ."
 		<< endl;
 }
 
-// Вывод "шапки" списка абонентов.
+// Р’С‹РІРѕРґ "С€Р°РїРєРё" СЃРїРёСЃРєР° Р°Р±РѕРЅРµРЅС‚РѕРІ.
 void Phonebook::PrintPhonebookHeader()
 {
 	cout << endl
 		<< setw(5) << "ID"
-		<< setw(15) << "ФАМИЛИЯ"
-		<< setw(15) << "ИМЯ"
-		<< setw(40) << "АДРЕС"
-		<< setw(15) << "ТЕЛЕФОН"
-		<< setw(8) << "ВОЗРАСТ"
+		<< setw(15) << "Р¤РђРњРР›РРЇ"
+		<< setw(15) << "РРњРЇ"
+		<< setw(40) << "РђР”Р Р•РЎ"
+		<< setw(15) << "РўР•Р›Р•Р¤РћРќ"
+		<< setw(8) << "Р’РћР—Р РђРЎРў"
 		<< endl;
 }
 
-// Вывод списка абонентов.
+// Р’С‹РІРѕРґ СЃРїРёСЃРєР° Р°Р±РѕРЅРµРЅС‚РѕРІ.
 void Phonebook::PrintPhonebook()
 {
 	const int count = m_lst.GetCount();
@@ -158,10 +158,10 @@ void Phonebook::PrintPhonebook()
 	}
 }
 
-// Сохранение телефонного справочника в файл.
+// РЎРѕС…СЂР°РЅРµРЅРёРµ С‚РµР»РµС„РѕРЅРЅРѕРіРѕ СЃРїСЂР°РІРѕС‡РЅРёРєР° РІ С„Р°Р№Р».
 void Phonebook::SavePhonebookIntoFile()
 {
-	if (m_lst.GetCount() == 0) // Если в Phonebook пусто, то ничего не сохраняем в файл и выходим.
+	if (m_lst.GetCount() == 0) // Р•СЃР»Рё РІ Phonebook РїСѓСЃС‚Рѕ, С‚Рѕ РЅРёС‡РµРіРѕ РЅРµ СЃРѕС…СЂР°РЅСЏРµРј РІ С„Р°Р№Р» Рё РІС‹С…РѕРґРёРј.
 		return;
 
 	char fileNameWrite[20]{ "phonebook.data" };
@@ -180,7 +180,7 @@ void Phonebook::SavePhonebookIntoFile()
 	fclose(f_wright);
 }
 
-// Чтение телефонного справочника из файла.
+// Р§С‚РµРЅРёРµ С‚РµР»РµС„РѕРЅРЅРѕРіРѕ СЃРїСЂР°РІРѕС‡РЅРёРєР° РёР· С„Р°Р№Р»Р°.
 void Phonebook::LoadPhonebookFromFile()
 {
 	char fileNameRead[20]{ "phonebook.data" };
@@ -192,7 +192,7 @@ void Phonebook::LoadPhonebookFromFile()
 		return;
 	}
 
-	if (m_lst.GetCount() > 0) // Если Phonebook не пустой, чистим.
+	if (m_lst.GetCount() > 0) // Р•СЃР»Рё Phonebook РЅРµ РїСѓСЃС‚РѕР№, С‡РёСЃС‚РёРј.
 		m_lst.DelAll();
 
 	const int lenght = _filelength(_fileno(f_read));
@@ -207,7 +207,7 @@ void Phonebook::LoadPhonebookFromFile()
 	fclose(f_read);
 }
 
-// Перегрузка оператора ">" для "this > object".
+// РџРµСЂРµРіСЂСѓР·РєР° РѕРїРµСЂР°С‚РѕСЂР° ">" РґР»СЏ "this > object".
 bool Abonent::operator>(const Abonent& abonent) const
 {
 	if (strcmp(this->m_surname, abonent.m_surname) == 1)
